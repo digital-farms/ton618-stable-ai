@@ -240,7 +240,7 @@ app.use((err, req, res, next) => {
 });
 
 // Запуск сервера
-const host = process.env.NODE_ENV === 'production' ? 'localhost' : '0.0.0.0';
+const host = '0.0.0.0';
 const port = process.env.PORT || 3002;
 
 app.listen(port, host, () => {
