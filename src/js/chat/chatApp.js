@@ -103,11 +103,17 @@ class ChatApp {
             // Формирование запроса
             const requestMessages = this.formatMessagesForAPI();
 
-            // Добавление текущего сообщения пользователя
-            requestMessages.push({
-                role: 'user',
-                content: userInput
-            });
+            // Проверяем, есть ли текущее сообщение пользователя в истории
+            const lastMessage = this.messages[this.messages.length - 1];
+            const isLastMessageFromUser = lastMessage && lastMessage.role === 'user' && lastMessage.content === userInput;
+            
+            // Добавляем текущее сообщение пользователя только если его еще нет в истории
+            if (!isLastMessageFromUser) {
+                requestMessages.push({
+                    role: 'user',
+                    content: userInput
+                });
+            }
 
             const response = await fetch(this.apiUrl, {
                 method: 'POST',

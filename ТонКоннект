@@ -1,0 +1,28 @@
+    <script>
+        // Инициализация TON Connect
+        const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+            manifestUrl: 'https://gist.githubusercontent.com/digital-farms/8d35f3000f9aee49b20647e1f68e6fd4/raw/c60defddd5b32a75e863d74907507d37b2861cb3/tonconnect-manifest.json',
+            buttonRootId: 'ton-connect'
+        });
+
+            // Слушаем событие изменения статуса
+    tonConnectUI.onStatusChange((walletInfo) => {
+        if (walletInfo?.account?.address) {
+            const rawAddress = walletInfo.account.address;
+
+            // Отправляем адрес на сервер
+            fetch('/api/wallet/connect', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ walletAddress: rawAddress })
+            })
+            .then(response => response.json())
+            .then(data => console.log('Response:', data))
+            .catch(error => console.error('Error:', error));
+
+            console.log('Address sent:', rawAddress);
+        }
+    });
+    </script>

@@ -178,32 +178,6 @@
             transform: scale(0.98);
         }
 
-        .waitlist-button {
-            position: fixed;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: transparent;
-            border: none;
-            color: rgba(255, 255, 255, 0.6);
-            padding: 12px 30px;
-            font-size: 16px;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            animation: pulseText 3s ease-in-out infinite;
-            z-index: 2;
-        }
-
-        @keyframes pulseText {
-            0%, 100% { color: rgba(255, 255, 255, 0.6); }
-            50% { color: rgba(255, 255, 255, 0.9); }
-        }
-
-        .waitlist-button:active {
-            transform: translateX(-50%) scale(0.98);
-        }
-
         #planet-canvas {
             position: absolute;
             bottom: 80px;
@@ -224,22 +198,22 @@
                 max-height: 100vw;
                 bottom: 80px;
             }
-            
+
             .content {
                 padding-top: 120px;
             }
-            
+
             .title {
                 font-size: 36px;
                 flex-wrap: nowrap;
                 white-space: nowrap;
             }
-            
+
             .title-logo {
                 height: 36px;
             }
-            
-            .community-button, .waitlist-button {
+
+            .community-button {
                 width: 180px;
                 font-size: 14px;
             }
@@ -249,37 +223,24 @@
             .title {
                 font-size: 32px;
             }
-            
+
             .title-logo {
                 height: 32px;
             }
-            
+
             .last_journey {
                 font-size: 14px;
             }
-            
-            .community-button, .waitlist-button {
+
+            .community-button {
                 width: 160px;
                 font-size: 13px;
                 padding: 10px 20px;
             }
-            
+
             #timer {
                 font-size: 14px;
             }
-        }
-
-        .page-transition {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            z-index: 9999;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s ease;
         }
 
         .timer {
@@ -457,6 +418,41 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .timer {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            letter-spacing: 2px;
+            position: fixed;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .timer span {
+            display: inline-block;
+            min-width: 25px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -475,9 +471,8 @@
         <div class="title">T<img src="src/pics/ton618_logo.svg" alt="O" class="title-logo">N 618</div>
         <div class="last_journey">The Last Journey</div>
         <div id="error-message" class="error-message" style="display: none;"></div>
-        <button class="community-button">Community</button>
+        <a href="dashboard.html" class="community-button">AI CONNECT</a>
     </div>
-    <button class="waitlist-button">Join Waitlist</button>
 
     <script id="planetVertex" type="x-shader/x-vertex">
         varying vec2 vUv;
@@ -703,12 +698,7 @@
 
         document.querySelector('.community-button').addEventListener('click', (e) => {
             e.preventDefault();
-            transitionToPage('waitlist.html');
-        });
-
-        document.querySelector('.waitlist-button').addEventListener('click', (e) => {
-            e.preventDefault();
-            transitionToPage('waitlist.html');
+            transitionToPage('dashboard.html');
         });
 
         // Анимация при загрузке страницы

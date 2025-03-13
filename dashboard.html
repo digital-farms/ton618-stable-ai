@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Личный кабинет</title>
+    <title>AI CONNECT</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
@@ -140,15 +140,15 @@
 
     <script type="module">
         import initChat from '/src/js/chat/initChat.js';
-        
+
         // Инициализация после загрузки страницы
         window.addEventListener('load', () => {
             const loadingScreen = document.getElementById('loading-screen');
             const nebula = document.getElementById('nebula');
-            
+
             // Инициализация нейронебулы
             const neuroNebula = new NeuroNebula();
-            
+
             // Отображение страницы
             setTimeout(() => {
                 document.body.style.opacity = '1';
@@ -157,13 +157,13 @@
                 setTimeout(() => {
                     loadingScreen.style.display = 'none';
                 }, 1000);
-                
+
                 // Инициализация чата
                 initChat();
             }, 1000);
         });
     </script>
-    
+
     <script>
         class NeuroNebula {
             constructor() {
