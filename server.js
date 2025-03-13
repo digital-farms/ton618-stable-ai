@@ -241,8 +241,12 @@ app.use((err, req, res, next) => {
 
 // Запуск сервера
 const host = '0.0.0.0';
-const port = process.env.PORT || 3002;
+const port = process.env.PORT || 10000;
 
-app.listen(port, host, () => {
+const server = app.listen(port, host, () => {
     console.log(`Server is running on ${host}:${port}`);
 });
+
+// Увеличиваем тайм-ауты для предотвращения ошибок на Render
+server.keepAliveTimeout = 120000;
+server.headersTimeout = 120000;
